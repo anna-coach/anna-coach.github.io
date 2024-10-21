@@ -6,6 +6,10 @@
     <title>Unity WebGL Player | anna-coach</title>
     <link rel="stylesheet" href="TemplateData/style.css">
     <style>
+        :root {
+		  --gray: #34495e;
+		  --darkgray: #2c3e50;
+		}
         html{
             height: -webkit-fill-available;
         }
@@ -30,6 +34,69 @@
             background: #fffa;
             z-index: 99;
         }
+        .btn {
+			display: inline-block;
+			border: none;
+			background-color: transparent;
+			font-size: 18px;
+			cursor: pointer;
+		}
+		.btn-3 {
+			color: #fff;
+			padding: 18px 32px;
+			font-weight: 600;
+			font-size: 18px;
+			border-radius: 20px;
+			background: #3A86FF;
+		}
+		
+		select {
+			/* Reset Select */
+			appearance: none;
+			outline: 0;
+			border: 0;
+			box-shadow: none;
+			/* Personalize */
+			flex: 1;
+			padding: 0 1em;
+			color: #fff;
+			background-color: var(--darkgray);
+			background-image: none;
+			cursor: pointer;
+		}
+		
+		/* Remove IE arrow */
+		select::-ms-expand {
+			display: none;
+		}
+		
+		/* Custom Select wrapper */
+		.select {
+			position: relative;
+			display: flex;
+			width: 20em;
+			height: 3em;
+			border-radius: .25em;
+			overflow: hidden;
+		}
+		
+		/* Arrow */
+		.select::after {
+			content: '\25BC';
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 1em;
+			background-color: #34495e;
+			transition: .25s all ease;
+			pointer-events: none;
+		}
+		
+		/* Transition */
+		.select:hover::after {
+			color: #ccc;
+		}
+		
     </style>
 </head>
 <body>
@@ -46,9 +113,11 @@
     <!-- <video id="webcam-video" muted autoplay playsinline style="width:100%; height:100%; object-fit:cover; position:absolute"></video> -->
     <canvas id="video-canvas" style="width:100%; height:100%; object-fit:cover; position:absolute"></canvas>
     <div id="startARDiv" class="ctaDiv">
-        <select id="chooseCamSel" style="display: none;" onchange="SelectCam()"></select>
-        <p style="text-align: center; width:60vw;">This augmented reality experience requires access to your device's camera</p>
-        <button id="startARButton" onclick="StartAR()" style="display:none">ALLOW ACCESS</button>
+        <div class="select">
+            <select id="chooseCamSel" style="display: none;" onchange="SelectCam()"></select>
+        </div>
+        <p style="text-align: center; width:60vw;">Дополненая реальность(AR) запрашивает разрешение на использование камеры</p>
+        <button id="startARButton" onclick="StartAR()" style="display:none" class="btn btn-3">Начать</button>
     </div>
     <div id="screenshotDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
